@@ -37,13 +37,20 @@
 		scene.add( mesh );
 
 		// handle window resize
-		window.addEventListener('resize', function(){
-			renderer.setSize( width, height )
-			camera.aspect	= aspect
-			camera.updateProjectionMatrix()
-		}, false)
+		window.addEventListener('resize', onWindowResize, false);
 
 		animate();
+	}
+
+	const onWindowResize = () => {
+		const width = window.innerWidth;
+		const height = window.innerHeight;
+		const aspect = width / height;
+
+		camera.aspect	= aspect
+		camera.updateProjectionMatrix()
+
+		renderer.setSize( width, height )
 	}
 
 	const animate = () => {
